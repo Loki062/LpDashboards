@@ -14,12 +14,8 @@
                 <img src="src/images/logo (2).png" id="user_avatar" alt="Avatar">
     
                 <p id="user_infos">
-                    <span class="item-description">
-                        Eficiência
-                    </span>
-                    <span class="item-description">
-                        Solar
-                    </span>
+                    <span class="item-description">Eficiência</span>
+                    <span class="item-description">Solar</span>
                 </p>
             </div>
     
@@ -27,54 +23,19 @@
                 <li class="side-item" id="metasEstrategicas">
                     <a href="#">
                         <i class="fa-solid fa-chart-line"></i>
-                        <span class="item-description">
-                           Metas Estratégicas
-                        </span>
+                        <span class="item-description">Metas Estratégicas</span>
                     </a>
                 </li>
-    
-                <li class="side-item">
+                <li class="side-item" id="metasTaticas">
                     <a href="#">
                         <i class="fa-solid fa-chart-line"></i>
-                        <span class="item-description">
-                            Metas Táticas
-                        </span>
+                        <span class="item-description">Metas Táticas</span>
                     </a>
                 </li>
-    
-                <li class="side-item">
+                <li class="side-item" id="Desdobramentotatico">
                     <a href="#">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="item-description">
-                            Notificações
-                        </span>
-                    </a>
-                </li>
-    
-                <li class="side-item">
-                    <a href="#">
-                        <i class="fa-solid fa-box"></i>
-                        <span class="item-description">
-                            Produtos
-                        </span>
-                    </a>
-                </li>
-    
-                <li class="side-item">
-                    <a href="#">
-                        <i class="fa-solid fa-image"></i>
-                        <span class="item-description">
-                            Imagens
-                        </span>
-                    </a>
-                </li>
-    
-                <li class="side-item">
-                    <a href="#">
-                        <i class="fa-solid fa-gear"></i>
-                        <span class="item-description">
-                            Configurações
-                        </span>
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="item-description">Desdobramento tático</span>
                     </a>
                 </li>
             </ul>
@@ -86,33 +47,55 @@
     </nav>
 
     <main id="mainContent">
-        <!-- Aqui o iframe será exibido -->
+        <!-- O iframe será exibido aqui -->
     </main>
 
     <script src="src/javascript/script.js"></script>
     <script>
-        document.getElementById("metasEstrategicas").addEventListener("click", function() {
+        // Função para adicionar o iframe de cada dashboard ao clicar nos itens do menu
+        function addDashboardToMain(contentId) {
             var mainContent = document.getElementById("mainContent");
-    
-            // Adiciona o iframe do Dashboard com o botão de fechar
-            mainContent.innerHTML = `
-                <div id="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: green; color: white; padding: 5px 10px; border-radius: 5px;">
-                    Fechar
-                </div>
-                <iframe 
-                    title="METAS ESTRATEGICAS"
-                    width="1024"
-                    height="612"
-                    src="https://app.powerbi.com/view?r=eyJrIjoiMWExM2Q2YzUtNDM5NC00MDk0LWFiMGEtMTAwNmM0NTMxZjQxIiwidCI6ImIxYWM5M2VjLTMxNmItNDgyZi1iMzM4LTM0NDYwMmM3N2RjYiJ9" 
-                    frameborder="0" 
-                    allowFullScreen="true">
-                </iframe>
-            `;
-    
-            // Adiciona a função para fechar o iframe ao clicar no botão
+            var iframeHtml = '';
+            
+            // Verifica qual dashboard foi clicado e adiciona o iframe correspondente
+            if (contentId === 'metasEstrategicas') {
+                iframeHtml = `
+                    <div id="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: red; color: white; padding: 5px 10px; border-radius: 5px;">Fechar</div>
+                    <iframe title="METAS ESTRATEGICAS" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiMWExM2Q2YzUtNDM5NC00MDk0LWFiMGEtMTAwNmM0NTMxZjQxIiwidCI6ImIxYWM5M2VjLTMxNmItNDgyZi1iMzM4LTM0NDYwMmM3N2RjYiJ9" frameborder="0" allowfullscreen="true"></iframe>
+                `;
+            } else if (contentId === 'metasTaticas') {
+                iframeHtml = `
+                    <div id="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: red; color: white; padding: 5px 10px; border-radius: 5px;">Fechar</div>
+                    <iframe title="METAS TATICAS" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiMjE4YmNiYWQtMGY2Mi00OTg5LWI0MDgtMTUxODdiMTE1OGRlIiwidCI6ImIxYWM5M2VjLTMxNmItNDgyZi1iMzM4LTM0NDYwMmM3N2RjYiJ9" frameborder="0" allowfullscreen="true"></iframe>
+                `;
+            } else if (contentId === 'Desdobramentotatico') {
+                iframeHtml = `
+                    <div id="closeButton" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background-color: red; color: white; padding: 5px 10px; border-radius: 5px;">Fechar</div>
+                    <iframe title="PRODUTOS" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiZDE3YTYzMTgtMWUwZi00MzM5LWExOWYtMzQ3NDZiMWNlODg2IiwidCI6ImIxYWM5M2VjLTMxNmItNDgyZi1iMzM4LTM0NDYwMmM3N2RjYiJ9" frameborder="0" allowfullscreen="true"></iframe>
+                `;
+            }
+
+            // Adiciona o conteúdo ao main
+            mainContent.innerHTML = iframeHtml;
+
+            // Função para fechar o iframe
             document.getElementById("closeButton").addEventListener("click", function() {
                 mainContent.innerHTML = '';  // Limpa o conteúdo e esconde o iframe
             });
+        }
+
+        // Adicionando o evento de clique para os itens do menu
+        document.getElementById("metasEstrategicas").addEventListener("click", function() {
+            addDashboardToMain('metasEstrategicas');
+        });
+
+        document.getElementById("metasTaticas").addEventListener("click", function() {
+            addDashboardToMain('metasTaticas');
+        });
+
+        document.getElementById("Desdobramentotatico").addEventListener("click", function() {
+            addDashboardToMain('Desdobramentotatico');
         });
     </script>
+</body>
 </html>
